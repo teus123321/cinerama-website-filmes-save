@@ -10,6 +10,7 @@ RUN npm install
 
 COPY . .
 
+ENV DATABASE_URL="postgresql://fake:fake@localhost:5432/fake"
 
 RUN npx prisma generate
 
@@ -35,8 +36,7 @@ COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY prisma ./prisma
 COPY public ./public
 
-# Expõe a porta (Railway usa a env PORT automaticamente)
+
 EXPOSE 3000
 
-# Roda migrações e inicia o servidor
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main/index.js"]
