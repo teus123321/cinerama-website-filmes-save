@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinerama — Sua Lista</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- AUTH OVERLAY -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="auth-panel">
+            <div class="auth-brand">
+                <span class="brand-mark">◈</span>
+                <h1 class="brand-name">Cinerama</h1>
+            </div>
+            <p class="auth-tagline">Guarde os filmes que você quer assistir.</p>
+
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Entrar</button>
+                <button class="tab-btn" data-tab="register">Cadastrar</button>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <div id="tab-login" class="tab-content active">
+                <div class="field-group">
+                    <label>E-mail</label>
+                    <input type="email" id="login-email" placeholder="seu@email.com" autocomplete="email">
+                </div>
+                <div class="field-group">
+                    <label>Senha</label>
+                    <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+                </div>
+                <button class="btn-primary" id="btn-login">Entrar</button>
+                <p class="auth-error" id="login-error"></p>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <div id="tab-register" class="tab-content">
+                <div class="field-group">
+                    <label>Nome</label>
+                    <input type="text" id="reg-name" placeholder="Seu nome">
+                </div>
+                <div class="field-group">
+                    <label>E-mail</label>
+                    <input type="email" id="reg-email" placeholder="seu@email.com" autocomplete="email">
+                </div>
+                <div class="field-group">
+                    <label>Senha</label>
+                    <input type="password" id="reg-password" placeholder="••••••••" autocomplete="new-password">
+                </div>
+                <button class="btn-primary" id="btn-register">Criar conta</button>
+                <p class="auth-error" id="reg-error"></p>
+            </div>
+        </div>
+
+        <!-- Decorative film strip -->
+        <div class="film-strip left">
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+        </div>
+        <div class="film-strip right">
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+            <div class="film-hole"></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP -->
+    <div id="app" class="app hidden">
+        <header class="app-header">
+            <div class="header-left">
+                <span class="brand-mark small">◈</span>
+                <span class="brand-name small">Cinerama</span>
+            </div>
+            <div class="header-center">
+                <h2 class="list-title">Minha Lista</h2>
+                <span class="movie-count" id="movie-count">0 filmes</span>
+            </div>
+            <div class="header-right">
+                <span class="user-name" id="user-name-display"></span>
+                <button class="btn-ghost" id="btn-logout">Sair</button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- ADD MOVIE BAR -->
+            <div class="add-bar">
+                <div class="add-input-wrap">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" id="movie-search" placeholder="Adicionar filme à sua lista..."
+                        autocomplete="off">
+
+                    <ul id="search-results" class="search-results hidden"></ul>
+                </div>
+                
+            </div>
+
+            <!-- FILTER BAR -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="pending">A assistir</button>
+                <button class="filter-btn" data-filter="watched">Assistidos</button>
+            </div>
+
+            <!-- MOVIE GRID -->
+            <div id="movie-grid" class="movie-grid">
+                <!-- Cards injected here -->
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div id="empty-state" class="empty-state hidden">
+                <div class="empty-icon">🎬</div>
+                <p>Sua lista está vazia.</p>
+                <span>Adicione um filme acima para começar.</span>
+            </div>
+        </main>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

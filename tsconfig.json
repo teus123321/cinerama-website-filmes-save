@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    // Layout de Arquivos
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // Ambiente Node.js
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["node"],
+    "typeRoots": [
+      "./src/@types",
+      "./node_modules/@types"
+    ],
+
+    // Debug e Tipagem
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Checagem rígida
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+
+    // Qualidade de código
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Moderno
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

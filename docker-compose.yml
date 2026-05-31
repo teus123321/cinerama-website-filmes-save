@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  # ── Banco de dados PostgreSQL ──────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: cinerama_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: cinerama
+      POSTGRES_PASSWORD: cinerama_dev
+      POSTGRES_DB: cinerama
+    ports:
+      - '5432:5432'         # Expõe para o host (útil para acessar com DBeaver/TablePlus)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U cinerama']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── Aplicação Node.js ──────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cinerama_app
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://cinerama:cinerama_dev@db:5432/cinerama
+      JWT_SECRET: ${JWT_SECRET}           
+      TMDB_KEY: ${TMDB_KEY}               
+      ALLOWED_ORIGINS: http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy        
+
+volumes:
+  postgres_data:
